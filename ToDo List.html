@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+          background: #3c81b2;
+          font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .task-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #eeeff0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>To Do List</h1>
+
+        <form id="task-form">
+
+            <div class="form-group">
+                <label for="task">Task</label>
+                <input type="text" id="task" name="task" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Add Task</button>
+            </div>
+        </form>
+        <ul class="task-list" id="task-list"></ul>
+    </div>
+
+    <script>
+        const form = document.getElementById('task-form');
+        const taskList = document.getElementById('task-list');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const task = document.getElementById('task').value;
+            const description = document.getElementById('description').value;
+
+            if (!task || !description) {
+                alert('Please fill out all fields');
+                return;
+            }
+
+            const listItem = document.createElement('li');
+            listItem.textContent = `${task}: ${description}`;
+            taskList.appendChild(listItem);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
